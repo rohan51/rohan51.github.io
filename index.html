@@ -1,1 +1,44 @@
-Hello World
+<!DOCTYPE html>
+<html data-ng-app="fourSquareApp">
+<header>
+	<link rel="stylesheet" type="text/css" href="css/venues.css">
+	<meta charset="UTF-8">
+	<meta name=viewport content=width=device-width, initial-scale=1, maximum-scale=1>
+	<title>Foursquare!</title>
+</header>
+<body ng-controller="MyController" ng-init="initMap()">
+		<menu class="controls">
+			<input type="text" ng-model="locationInput" placeholder="Use current location"></input>
+			<button type="button" ng-click="getVenues()">Get data</button>
+		</menu>
+		<div>
+        	Choose category of venue:
+	        <select data-ng-model="category"
+	                data-ng-options="category for category in categories">
+	        </select>
+    	</div>
+
+    	<div>
+        	Choose radius (km):
+	        <select data-ng-model="radius"
+	                data-ng-options="distance for distance in radii">
+	        </select>
+    	</div>
+
+    	<div>
+    		<venues venues-data="venuesData" />
+    	</div>
+
+		<!-- <div id="map"></div> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js" defer></script>
+	<script type="text/javascript" src="js/app.js" defer></script>
+	<script type="text/javascript" src="js/foursquare.svc.js" defer></script>
+	<script type="text/javascript" src="js/controller.js" defer></script>
+	<script type="text/javascript" src="js/venues.dir.js" defer></script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWqeO_7GwXybDj0Sb7ueRYJt_GuRxg1iw">
+    </script>
+
+</body>
+</html>
