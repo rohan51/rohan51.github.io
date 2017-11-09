@@ -2,8 +2,8 @@
     "use strict";
 
     angular
-    .module("app.controllers.MyController", [])
-    .controller("MyController", [
+    .module("app.controllers.DataController", [])
+    .controller("DataController", [
         "$scope",
         "foursquare",
         DataController

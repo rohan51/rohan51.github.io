@@ -2,7 +2,7 @@
     "use strict";
 
 	var fourSquareApp = angular.module("fourSquareApp", [
-			"app.controllers.MyController",
+			"app.controllers.DataController",
 			"app.services.foursquare",
 			"app.directives.venues"
 		]);
