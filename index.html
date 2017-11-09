@@ -4,7 +4,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/venues.css">
 		<meta charset="UTF-8">
-		<meta name=viewport content=width=device-width, initial-scale=1, maximum-scale=1>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<title>Foursquare Venues!</title>
 	</header>
 	<body ng-controller="DataController" ng-init="initMap()">
@@ -19,13 +19,15 @@
 					<div class="data-filter">
 			        	Choose category of venue:
 				        <select data-ng-model="category"
-				                data-ng-options="category for category in categories">
+				                data-ng-options="category for category in categories"
+				                ng-change="getVenues()">
 				        </select>
 			    	</div>
 			    	<div class="data-filter">
 			        	Choose radius (km):
 				        <select data-ng-model="radius"
-				                data-ng-options="distance for distance in radii">
+				                data-ng-options="distance for distance in radii"
+				                ng-change="getVenues()">
 				        </select>
 			    	</div>
 			    	<div class="alert alert-danger" ng-show="showError" ng-cloak>

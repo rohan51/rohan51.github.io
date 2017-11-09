@@ -90,7 +90,6 @@
         /*
             $scope functions
         */
-
         
         $scope.initMap = function() {
             map = new google.maps.Map(document.getElementById('map'), {
