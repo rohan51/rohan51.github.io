@@ -31,6 +31,9 @@
 
             function constructQueryString(apiParams) {
                 let parameterString = "";
+
+                //User has to either provide the location themselves through the input box, or grant access to their location.
+                //Depending on which is provided, the query param that is passed to the API is different.
                 if (apiParams.locationInput) {
                     parameterString += `&near=${apiParams.locationInput}`;
                 } else {

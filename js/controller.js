@@ -67,11 +67,11 @@
         function transformFoursquareData(data) {
             clearOverlays();
             $scope.promptUser = false;
-            $scope.loading = false;
+            $scope.loading = false; //used to show the loading spinner image
             $scope.showError = false;
             $scope.venuesData = data;
             data.forEach((venue) => {
-                
+                //create markers to show on the map
                 let marker = new google.maps.Marker({
                   position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
                   map: map,
@@ -105,16 +105,19 @@
             }
 
             if ($scope.locationInput) {
+                //if location is provided by user, then pass the location string as is to the API
                 $scope.loading = true;
                 apiParams.locationInput = $scope.locationInput;
                 foursquare.getData(apiParams).then(function (data,test) {
                     transformFoursquareData(data);
                 }, function (error) {
+                    //show error message if API call fails for any reason
                     $scope.loading = false;
                     $scope.promptUser = false;
                     $scope.showError = true;
                 });
             } else if (navigator.geolocation) {
+                //if the location text box is empty, then use the user's location
                 $scope.loading = true;
                 navigator.geolocation.getCurrentPosition(function (userLocation) {
                     apiParams.latitude = userLocation.coords.latitude;
@@ -128,6 +131,7 @@
                         $scope.showError = true;
                     });
                 }, function (err) {
+                    //User didn't give access to location data, so show a prompt asking them to provide it in their subsequent request
                     $scope.$apply(
                         () => {
                             $scope.loading = false;
