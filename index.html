@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <html data-ng-app="fourSquareApp">
-<header>
-	<link rel="stylesheet" type="text/css" href="css/venues.css">
-	<meta charset="UTF-8">
-	<meta name=viewport content=width=device-width, initial-scale=1, maximum-scale=1>
-	<title>Foursquare!</title>
-</header>
-<body ng-controller="MyController" ng-init="initMap()">
-		<menu class="controls">
-			<input type="text" ng-model="locationInput" placeholder="Use current location"></input>
-			<button type="button" ng-click="getVenues()">Get data</button>
-		</menu>
-		<div>
-        	Choose category of venue:
-	        <select data-ng-model="category"
-	                data-ng-options="category for category in categories">
-	        </select>
-    	</div>
+	<header>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/venues.css">
+		<meta charset="UTF-8">
+		<meta name=viewport content=width=device-width, initial-scale=1, maximum-scale=1>
+		<title>Foursquare Venues!</title>
+	</header>
+	<body ng-controller="MyController" ng-init="initMap()">
+		<div class="container-fluid">
+			<div class="row">
+				<main role="main" class="col-md-12">
+					<h1>Foursquare venues</h1>
+					<menu class="controls">
+						<input type="text" ng-model="locationInput" placeholder="Current location"></input>
+						<button type="button" ng-click="getVenues()">Get venues</button>
+					</menu>
+					<div class="data-filter">
+			        	Choose category of venue:
+				        <select data-ng-model="category"
+				                data-ng-options="category for category in categories">
+				        </select>
+			    	</div>
+			    	<div class="data-filter">
+			        	Choose radius (km):
+				        <select data-ng-model="radius"
+				                data-ng-options="distance for distance in radii">
+				        </select>
+			    	</div>
+			    	<div class="alert alert-danger" ng-show="showError" ng-cloak>
+			    		Error loading venues. Please check provided location and retry.
+			    	</div>
+			    	<div class="alert alert-danger" ng-show="promptUser" ng-cloak>
+			    		Please grant access to your location, or enter a location you'd like to search near.
+			    	</div>
+			    	<div class="loading-spinner" ng-show="loading">
+			    		<img src="img/loading.gif"></img>
+			    	</div>
+			    	<section class="row">
+			    		<div class="col-5">
+			    			<venues venues-data="venuesData" />
+			    		</div>
+			    		<div id="map" class="col-7"></div>
+			    	</section>
+					
+				</main>
+			</div>
+		</div>
 
-    	<div>
-        	Choose radius (km):
-	        <select data-ng-model="radius"
-	                data-ng-options="distance for distance in radii">
-	        </select>
-    	</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js" defer></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWqeO_7GwXybDj0Sb7ueRYJt_GuRxg1iw" defer>
+	    </script>
+		<script type="text/javascript" src="js/app.js" defer></script>
+		<script type="text/javascript" src="js/foursquare.svc.js" defer></script>
+		<script type="text/javascript" src="js/controller.js" defer></script>
+		<script type="text/javascript" src="js/venues.dir.js" defer></script>
 
-    	<div>
-    		<venues venues-data="venuesData" />
-    	</div>
-
-		<!-- <div id="map"></div> -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js" defer></script>
-	<script type="text/javascript" src="js/app.js" defer></script>
-	<script type="text/javascript" src="js/foursquare.svc.js" defer></script>
-	<script type="text/javascript" src="js/controller.js" defer></script>
-	<script type="text/javascript" src="js/venues.dir.js" defer></script>
-
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWqeO_7GwXybDj0Sb7ueRYJt_GuRxg1iw">
-    </script>
-
-</body>
+	</body>
 </html>
