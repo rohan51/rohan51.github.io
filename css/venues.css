@@ -35,6 +35,10 @@ li {
 	margin-bottom: 10px;
 }
 
+.venues-list {
+	padding-left: 20px;
+}
+
 .venues-list, #map {
 	margin-top: 15px;
 }
